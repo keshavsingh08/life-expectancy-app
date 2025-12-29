@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Life Expectancy Predictor</title>
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: 50px auto; text-align: center; }
+        select, input, button { padding: 10px; margin: 10px; width: 80%; }
+        .result { margin-top: 20px; font-weight: bold; color: #2c3e50; font-size: 1.2em; }
+    </style>
+</head>
+<body>
+    <h1>Life Expectancy Predictor</h1>
+    
+    <form action="/predict" method="post">
+        <label>Select Country:</label><br>
+        <select name="country" required>
+            <option value="" disabled selected>Select a country</option>
+            {% for country in countries %}
+                <option value="{{ country }}">{{ country }}</option>
+            {% endfor %}
+        </select>
+        <br>
+
+        <label>Enter Year:</label><br>
+        <input type="number" name="year" placeholder="e.g. 2025" required>
+        <br>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    <div class="result">
+        {{ prediction_text }}
+    </div>
+</body>
+</html>
